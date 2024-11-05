@@ -1,9 +1,7 @@
 on:
   push:
     paths:
-      - paper.md
-      - paper.bib
-      - .github/workflows/pdf_generator.yml
+      - main
 
 jobs:
   paper:
