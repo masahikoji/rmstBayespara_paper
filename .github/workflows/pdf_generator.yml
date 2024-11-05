@@ -1,27 +1,24 @@
-name: PDF Generation
-
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+name: Draft PDF
+on: [push]
 
 jobs:
-  build:
+  paper:
     runs-on: ubuntu-latest
-    
+    name: Paper Draft
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v2
-
-    - name: Generate PDF
-      uses: openjournals/pdf-generator-action@v1
-      with:
-        markdown_file: "paper.md"  # 変換したい.mdファイル名に変更
-        output_pdf: "output.pdf"       # 出力されるPDFの名前
-        
-    - name: Upload PDF Artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: generated-pdf
-        path: output.pdf
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build draft PDF
+        uses: openjournals/openjournals-draft-action@master
+        with:
+          journal: joss
+          # This should be the path to the paper within your repo.
+          paper-path: paper.md
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: paper
+          # This is the output path where Pandoc will write the compiled
+          # PDF. Note, this should be the same directory as the input
+          # paper.md
+          path: paper.pdf
