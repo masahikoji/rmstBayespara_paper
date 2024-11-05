@@ -17,7 +17,7 @@ jobs:
     - name: Generate PDF
       uses: openjournals/pdf-generator-action@v1
       with:
-        markdown_file: "your-file.md"  # 変換したい.mdファイル名に変更
+        markdown_file: "paper.md"  # 変換したい.mdファイル名に変更
         output_pdf: "output.pdf"       # 出力されるPDFの名前
         
     - name: Upload PDF Artifact
