@@ -1,0 +1,27 @@
+name: PDF Generation
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Generate PDF
+      uses: openjournals/pdf-generator-action@v1
+      with:
+        markdown_file: "your-file.md"  # 変換したい.mdファイル名に変更
+        output_pdf: "output.pdf"       # 出力されるPDFの名前
+        
+    - name: Upload PDF Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: generated-pdf
+        path: output.pdf
