@@ -128,6 +128,26 @@ brm_surv(time, cnsr, var, rvar, family = "exponential", random = "fixed", data,
 - `waic`: Widely applicable information criterion.
 - `loo`: Efficient approximate leave-one-out cross-validation.
 
+The function provides the value of RMST via parametric models, such as exponential, Weibull, log-normal, and log-logistic models.
+
+**Usage**: The `rmstpara` function is called using following syntax.
+```
+rmstpara(tau, var, rvar = NA, shape = NA, sigma = NA, 
+         family = "exponential", random = "fixed")
+```
+
+**Arguments**: The main arguments of `rmstpara` function is tabulated as below:
+
+- `tau`: A value of pre-specified evaluation time point.
+- `var`: A vector of covariate values.
+- `rvar`: A vector of frailty effects. It is necessary when log-normal frailty and log-logistic frailty models.
+- `shape`: A vector of shape parameters. It is necessary when Weibull and log-logistic models.
+- `sigma`: A vector of standard error parameters. It is necessary when log-normal model.
+- `family`: A description of the response distribution and link function to be used in the model. 'exponential', 'Weibull', 'log-normal', and 'log-logistic' can be selected.
+- `random`: A description of random effect. 'fixed', 'normal', and 'frailty' are available.
+
+**Value**: The `rmstpara` function returns a value or vector of RMST via the specific parametric model.
+
 ## Example data
 We illustrate a real example of the Leukemia Survival Data in `spBayesSurv`, which include 1,043 patients of survival of acute myeloid leukemia. We focus on the "time", "cens", "age" and "district" variables.
 "District" can be regarded as a cluster, and the impact of mixed effects and frailty can be considered.
